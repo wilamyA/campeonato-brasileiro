@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<!-- Esse bloco é um gerenciamento de Erro, não precisa mexer -->
+{% if errors %}
+<div class="container">
+	{%- for msg in errors %}
+	<div class="alert alert-danger" role="alert">
+		{{ msg }}
+		{% for error in errors[msg] %}
+		{{error}}
+		{% endfor %}
+	</div>
+	{% endfor -%}
+</div>
+{% endif %}
+<!-- Faça o template a partir daqui-->
+
+
+<form action="" method="POST" novalidate>
+	{{ form.hidden_tag() }}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				{{wtf.form_field(form.rodada)}}
+			</div>
+			<div class="col-md-6">
+				{{wtf.form_field(form.data)}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				{{wtf.form_field(form.mandante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.gols_mandante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.amarelos_mandante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.vermelhos_mandante)}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				{{wtf.form_field(form.visitante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.gols_visitante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.amarelos_visitante)}}
+			</div>
+			<div class="col-md-2">
+				{{wtf.form_field(form.vermelhos_visitante)}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				{{wtf.form_field(form.enviar)}}
+			</div>
+		</div>
+	</div>
+</form>
+	{% endblock %}
